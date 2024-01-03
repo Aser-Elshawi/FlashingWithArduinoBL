@@ -1,5 +1,7 @@
 # Prerequisites
 *.d
+*.s
+*.map
 
 # Compiled Object files
 *.slo
@@ -30,3 +32,10 @@
 *.exe
 *.out
 *.app
+*.hex
+*.elf
+
+# IDE
+*.cproject
+*.project
+.settings
