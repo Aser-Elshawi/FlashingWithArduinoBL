@@ -33,8 +33,9 @@ INCS = 	OS/
 #===============================================================================
 #==== Targets ==================================================================
 # Prepare target files path and name
-TARGET := Targets/$(TARGET_NAME)
-MAPFILE := Targets/$(TARGET_NAME)
+FOLDER := Targets
+TARGET := $(FOLDER)/$(TARGET_NAME)
+MAPFILE := $(FOLDER)/$(TARGET_NAME)
 
 # Convert c files to Object files in OBJ
 COBJ := $(CSRCS:.c=.o)
@@ -96,8 +97,8 @@ SIZE := avr-size
 
 #to do all, there is a prerequisites the hex file, if the hex file doesn't exist, make will
 #look for a rule to build the hex file
-all: $(TARGET).hex 
-	
+all: $(FOLDER) $(TARGET).hex
+
 # Rule to build the hex file, requires the elf file to exist as a prerequisite, if the elf doesn't exit
 # look for a rule to build it
 %.hex: %.elf
@@ -131,6 +132,9 @@ clean:
 	$(REMOVE) $(AOBJS)
 	$(REMOVE) $(CSRCS:.c=.s) $(SRCS:.cpp=.s)
 	$(REMOVE) $(CSRCS:.c=.d) $(SRCS:.cpp=.d)
+	
+$(FOLDER):
+	@if not exist "$(FOLDER)" mkdir $(FOLDER) && echo Folder $(FOLDER) created.
 
 	
 -include $(subst .c,.d,$(CSRCS))
