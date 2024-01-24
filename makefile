@@ -19,7 +19,7 @@ CSRCS =
 		
 
 SRCS = 	Services/TIMER1/TIMER1.cpp \
-		UART/UART.cpp \
+		MdUART/UART.cpp \
 		SPI/SPI.cpp \
 		OS/OStimer.cpp \
 		OS/OS.cpp \

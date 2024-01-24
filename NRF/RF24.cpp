@@ -315,8 +315,8 @@ void RF24::write_register(uint8_t reg, const uint8_t* buf, uint8_t len)
     #endif // !defined(RF24_SPI_PTR)
     endTransaction();
 #endif     // !defined(RF24_LINUX) && !defined(RF24_RP2)
-    uart.print("status: ");
-            uart.printd(status);
+   // uart.print("status: "); Raziur Commented
+            //uart.printd(status); Raziur Commented
 }
 
 /****************************************************************************/
@@ -1087,7 +1087,7 @@ bool RF24::begin(void)
 bool RF24::_init_pins()
 {
     if (!isValid()) {
-    	uart.println("_init_pins OK.");
+    	//uart.println("_init_pins OK."); Raziur Commented
     	//PORTB |= (1<<5);
         // didn't specify the CSN & CE pins to c'tor nor begin()
         return false;
@@ -1135,9 +1135,9 @@ bool RF24::_init_pins()
     ce(LOW);
 
     csn(HIGH);
-	uart.print("csPort:");
+	/*uart.print("csPort:");
 	uart.printd((int)*(csn_pin.port));
-	uart.printd((int)PORTB);
+	uart.printd((int)PORTB);*/ //Raziur Commented
 
     #if defined(__ARDUINO_X86__)
     _delay_ms(100);
