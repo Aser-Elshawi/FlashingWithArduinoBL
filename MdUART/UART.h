@@ -8,8 +8,6 @@
 #ifndef MDUART_UART_H_
 #define MDUART_UART_H_
 
-#include <avr/io.h>
-
 // Constants for setting the USART baud rate
 #define CLOCK_FREQUENCY 16000000UL // Clock speed understand this fully
 #define BAUD_RATE 9600
@@ -24,9 +22,14 @@ extern const uint8_t bluePin;  // Blue LED pin
 class USART {
 public:
     USART(unsigned int ubrr);
+    bool receive(char *ret);
+    void transmit(char data);
+    void print(char * str);
+    void service(void);
+    Md_queue<char> _queue;
+private:
+
     void init(unsigned int ubrr);
-    bool receive(unsigned char *ret);
-    void transmit(unsigned char data);
 };
 
 // Function declarations for LED control

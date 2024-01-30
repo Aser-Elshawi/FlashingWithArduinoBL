@@ -20,10 +20,10 @@ CSRCS =
 
 SRCS = 	Services/TIMER1/TIMER1.cpp \
 		MdUART/UART.cpp \
+		Md_QUEUE/Md_QUEUE.cpp \
 		SPI/SPI.cpp \
 		OS/OStimer.cpp \
 		OS/OS.cpp \
-		NRF/RF24.cpp \
 		main.cpp
 
 		
@@ -78,6 +78,7 @@ CPPFLAGS += -std=gnu++11
 CPPFLAGS += -fno-exceptions
 CPPFLAGS += -fno-threadsafe-statics
 CPPFLAGS += -flto
+CPPFLAGS += -Wwrite-strings
 CPPFLAGS += $(INCLUDE)
 
 LFLAGS := -fuse-linker-plugin

@@ -5,10 +5,13 @@
  *      Author: Razi_R
  */
 
-#include "UART.h"
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdint.h>
+#include <Md_QUEUE.h>
+#include <UART.h>
+
 
 
 // Output PINs for LEDs
@@ -45,7 +48,7 @@ void USART::init(unsigned int ubrr) {
                                             */
 }
 
-bool USART::receive(unsigned char *ret) {
+bool USART::receive(char *ret) {
     // Wait for data to be received
     if ((UCSR0A & (1 << RXC0))){
     	*ret = UDR0;
@@ -65,17 +68,29 @@ bool USART::receive(unsigned char *ret) {
      	 	 	 	 just received via USART.*/
 }
 
-void USART::transmit(unsigned char data) { // Not using it now
+void USART::transmit(char data) { // Not using it now
     // Wait for empty transmit buffer
-    while (!(UCSR0A & (1 << UDRE0))); /*UCSR0A & (1 << UDRE0): This bitwise
+   /* while (!(UCSR0A & (1 << UDRE0))); /*UCSR0A & (1 << UDRE0): This bitwise
      	 	 	 	 	 	 	 	 	AND operation checks the status of the
      	 	 	 	 	 	 	 	 	 UDRE0 bit. The loop continues
      	 	 	 	 	 	 	 	 	 (while (!(UCSR0A & (1 << UDRE0)))) as long
      	 	 	 	 	 	 	 	 	  as the UDRE0 bit is not set, indicating
      	 	 	 	 	 	 	 	 	  the buffer is not ready for new data.*/
-    UDR0 = data;
+
+	_queue.enque(data);
 }
 
+void USART::print(char * str){
+	while(*str != '\0'){
+		transmit(*(str++));
+	}
+}
+
+void USART::service(void){
+	if ((UCSR0A & (1 << UDRE0)) && _queue.size()){
+		UDR0 = _queue.dequeue();
+	}
+}
 void setupIO() {
     // Set LED pins as output
 	/*DDRB stands for Data Direction Register associated with port B*/
