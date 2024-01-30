@@ -1,6 +1,6 @@
 #==== Main Options =============================================================
 
-COMPORT = COM3
+COMPORT = COM5
 MCU = atmega328p
 F_CPU = 16000000
 TARGET_NAME = Arduino
