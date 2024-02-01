@@ -10,6 +10,7 @@
 
 template <typename T>
 class element{
+public:
 	element(T value):val(value),prev(nullptr),next(nullptr){}
 	T val;
 	element * next;
@@ -31,6 +32,6 @@ private:
 
 };
 
-
+#include "Md_QUEUE.cpp"
 
 #endif /* MD_QUEUE_MD_QUEUE_H_ */

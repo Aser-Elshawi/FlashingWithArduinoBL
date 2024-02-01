@@ -4,7 +4,9 @@
  *  Created on: Jan 29, 2024
  *      Author: aser_
  */
+#include <stddef.h>
 #include "Md_QUEUE.h"
+#include <new.h>
 
 template <typename T>
 Md_queue<T>::Md_queue(T val): len(1){
@@ -28,10 +30,10 @@ template <typename T>
 T Md_queue<T>::dequeue(void){
 	T tmp;
 	if(len == 0)
-		return 0;
+		return (T)0;
 	tmp = tail->val;
 	tail = tail->prev;
-	free(tail->next);
+	delete(tail->next);
 	tail->next = nullptr;
 	len--;
 	return tmp;

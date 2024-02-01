@@ -20,14 +20,15 @@ CSRCS =
 
 SRCS = 	Services/TIMER1/TIMER1.cpp \
 		MdUART/UART.cpp \
-		Md_QUEUE/Md_QUEUE.cpp \
+		Md_QUEUE/new.cpp \
 		SPI/SPI.cpp \
 		OS/OStimer.cpp \
 		OS/OS.cpp \
 		main.cpp
 
 		
-INCS = 	OS/
+INCS = 	OS/ \
+		Md_QUEUE/
 
 
 #===============================================================================
@@ -114,10 +115,9 @@ $(TARGET).elf: $(AOBJS) $(CPPS)
 	
 
 # Rule to build objects from cpp files
-%.o:%.cpp %.s
+%.o:%.cpp
 	@echo '**************  Building $< *****************************'
 	@$(CPP) -MD $(FLAGS) $(CPPFLAGS) -c $< -o $@
-%.s:%.cpp
 	@$(CPP) $(FLAGS) $(CPPFLAGS) -S $< -o $*.s
 
 
