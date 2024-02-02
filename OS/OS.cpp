@@ -42,7 +42,7 @@ void OS_Init(void)
 void OS_handlerCallBack(void){
     uint8_t i;
     for(i = 0;i<TASK_MAX;i++){
-        if((tasks[i].taskPointer != NULL)&&(tasks[i].state == IDLE)) // check if task exist
+        if((tasks[i].taskPointer != nullptr)&&(tasks[i].state == IDLE)) // check if task exist
         {
             if(tasks[i].task_counter >= (tasks[i].task_time-1)){ // time expired
                 tasks[i].state = RUN;
@@ -58,7 +58,7 @@ void OS_ServeOS(void)
 {
     uint8_t i;
     for(i = 0;i<TASK_MAX;i++){
-            if(tasks[i].taskPointer != NULL) // check if task exist
+            if(tasks[i].taskPointer != nullptr) // check if task exist
             {
                 if(tasks[i].state == RUN){ // time expired
                     tasks[i].state = RUNNING;

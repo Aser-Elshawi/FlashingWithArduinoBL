@@ -80,6 +80,7 @@ CPPFLAGS += -fno-exceptions
 CPPFLAGS += -fno-threadsafe-statics
 CPPFLAGS += -flto
 CPPFLAGS += -Wwrite-strings
+CPPFLAGS += -Wpedantic
 CPPFLAGS += $(INCLUDE)
 
 LFLAGS := -fuse-linker-plugin

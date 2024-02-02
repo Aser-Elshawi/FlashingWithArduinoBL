@@ -77,7 +77,7 @@ void USART::transmit(char data) { // Not using it now
      	 	 	 	 	 	 	 	 	  as the UDRE0 bit is not set, indicating
      	 	 	 	 	 	 	 	 	  the buffer is not ready for new data.*/
 
-	_queue.enque(data);
+	_queue.enqueue(data);
 }
 
 void USART::print(char * str){
